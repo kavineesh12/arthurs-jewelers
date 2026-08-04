@@ -27,26 +27,35 @@ const cards = [
 
 export default function FindYourRing() {
   return (
-    <section className="w-full bg-core-02 px-20 py-[120px] flex flex-col gap-14 items-center justify-center">
+    <section className="container-x w-full bg-core-02 py-16 lg:py-[120px] flex flex-col gap-12 lg:gap-14 items-center justify-center">
       <Reveal className="flex flex-col gap-2 items-center text-center w-full">
-        <p className="font-body text-base text-main-04 tracking-[3.2px]">
+        <p className="font-body text-sm lg:text-base text-main-04 tracking-[2.4px] lg:tracking-[3.2px]">
           YOUR JOURNEY YOUR WAY
         </p>
-        <h2 className="font-title font-bold text-5xl text-core-05">Find Your Perfect Ring</h2>
+        <h2 className="font-title font-bold text-[32px] sm:text-[40px] lg:text-5xl text-core-05 text-balance">
+          Find Your Perfect Ring
+        </h2>
         <p className="font-body text-base text-core-06 max-w-[330px]">
           Three beautiful ways to begin your forever.
         </p>
       </Reveal>
 
-      <div className="w-full flex gap-8 items-start">
+      {/* Stacked on phones, 3-up from md. */}
+      <div className="w-full flex flex-col md:flex-row gap-10 md:gap-8 items-start">
         {cards.map((card, i) => (
-          <Reveal key={card.title} delay={i * 0.1} className="flex-1 flex flex-col gap-6 self-stretch">
-            <div className="w-full h-[421px] overflow-hidden bg-white">
+          <Reveal
+            key={card.title}
+            delay={i * 0.1}
+            className="w-full md:flex-1 flex flex-col gap-6 self-stretch"
+          >
+            <div className="w-full h-[320px] sm:h-[380px] lg:h-[421px] overflow-hidden bg-white">
               <img src={card.image} alt={card.title} className="size-full object-cover" />
             </div>
             <div className="flex-1 flex flex-col gap-6 w-full">
               <div className="flex-1 flex flex-col gap-2 w-full">
-                <h3 className="font-title text-[27px] leading-8 text-core-05">{card.title}</h3>
+                <h3 className="font-title text-2xl lg:text-[27px] leading-8 text-core-05">
+                  {card.title}
+                </h3>
                 <p className="font-body text-sm text-core-06">{card.body}</p>
               </div>
               <TextLink color="muted">{card.cta}</TextLink>

@@ -44,7 +44,7 @@ const socialIcons = [socialSymbolPng, socialX, socialG12, socialGroup1, socialSy
 
 function FooterColumn({ title, links }: { title: string; links: string[] }) {
   return (
-    <div className="flex-1 min-w-0 flex flex-col gap-4 font-body">
+    <div className="flex flex-col gap-4 font-body">
       <p className="text-base text-black">{title}</p>
       <div className="flex flex-col gap-2 text-sm text-core-06">
         {links.map((link) => (
@@ -60,12 +60,14 @@ function FooterColumn({ title, links }: { title: string; links: string[] }) {
 export default function Footer() {
   return (
     <footer className="w-full bg-core-02 flex flex-col items-start">
-      <div className="w-full border-b border-border-light flex flex-wrap gap-4 items-start px-[clamp(24px,10vw,152px)] py-10">
+      {/* Grid instead of flex-wrap: flex-1 + min-w-0 let these columns squash
+          to unreadable widths on small screens. */}
+      <div className="w-full border-b border-border-light grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-4 items-start px-[clamp(20px,10vw,152px)] py-10">
         <FooterColumn title="About" links={aboutLinks} />
         <FooterColumn title="Why Arthur's Jewelers" links={whyLinks} />
         <FooterColumn title="Timings" links={timings} />
 
-        <div className="flex-1 min-w-[260px] flex flex-col justify-between gap-8 self-stretch">
+        <div className="flex flex-col justify-between gap-8 self-stretch">
           <div className="flex flex-col gap-4 font-body">
             <p className="text-base text-black">Contact Us</p>
             <div className="flex flex-col gap-2 text-sm text-core-06">
@@ -89,15 +91,20 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <Button variant="secondary" size="small" showIcon={false} className="w-full border-black text-black">
+            <Button
+              variant="secondary"
+              size="small"
+              showIcon={false}
+              className="w-full sm:w-auto lg:w-full border-black text-black"
+            >
               BOOK APPOINTMENT
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="w-full flex items-center justify-center px-[clamp(24px,10vw,152px)] py-8">
-        <p className="font-body text-sm text-core-06">
+      <div className="w-full flex items-center justify-center px-[clamp(20px,10vw,152px)] py-8">
+        <p className="font-body text-xs sm:text-sm text-core-06 text-center">
           © Copyright © 2026 Arthur's Jewelers. All rights reserved.
         </p>
       </div>

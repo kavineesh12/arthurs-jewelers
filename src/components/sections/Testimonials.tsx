@@ -26,22 +26,25 @@ const reviews = [
 
 export default function Testimonials() {
   return (
-    <section className="relative w-full bg-white border-b border-border-cream flex flex-col gap-2 items-center justify-center overflow-hidden p-20">
+    <section className="container-x relative w-full bg-white border-b border-border-cream flex flex-col gap-2 items-center justify-center overflow-hidden py-16 lg:py-20">
       <img
         src={ellipse10}
         alt=""
-        className="absolute -left-[152px] top-[393px] size-[347px] pointer-events-none select-none"
+        className="hidden lg:block absolute -left-[152px] top-[393px] size-[347px] pointer-events-none select-none"
       />
 
       <div className="relative w-full flex flex-col gap-8">
-        <div className="w-full flex items-end justify-between">
+        <div className="w-full flex items-end justify-between gap-6">
           <Reveal className="flex flex-col gap-4 text-core-05">
-            <p className="font-body text-base tracking-[3.2px]">REAL CUSTOMERS</p>
-            <h2 className="font-title font-bold text-5xl max-w-[432px]">
+            <p className="font-body text-sm lg:text-base tracking-[2.4px] lg:tracking-[3.2px]">
+              REAL CUSTOMERS
+            </p>
+            <h2 className="font-title font-bold text-[28px] sm:text-[36px] lg:text-5xl max-w-[432px]">
               Why <span className="text-[#adadad]">Minnesota Chooses</span> Arthur's
             </h2>
           </Reveal>
-          <div className="flex gap-3 items-center">
+          {/* Arrows are desktop-only; below lg the rail is swipeable. */}
+          <div className="hidden lg:flex gap-3 items-center shrink-0">
             <button
               type="button"
               aria-label="Previous"
@@ -60,12 +63,12 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="flex gap-3 items-stretch w-full">
+        <div className="snap-rail lg:!overflow-visible gap-3 items-stretch w-full lg:flex">
           {reviews.map((review, i) => (
             <Reveal
               key={review.name}
               delay={i * 0.1}
-              className="flex-1 bg-white border border-border-cream rounded-[2px] pt-6 px-6 flex flex-col"
+              className="w-[80vw] sm:w-[52vw] lg:w-auto shrink-0 lg:shrink lg:flex-1 bg-white border border-border-cream rounded-[2px] pt-6 px-6 flex flex-col"
             >
               <div className="flex gap-0.5 pb-4">
                 {Array.from({ length: 5 }).map((_, s) => (

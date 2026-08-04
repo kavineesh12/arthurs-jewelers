@@ -7,7 +7,7 @@ import TextLink from "../TextLink";
 
 export default function Hero() {
   return (
-    <section className="relative h-[797px] w-full overflow-hidden flex items-end justify-center">
+    <section className="relative h-[78svh] min-h-[480px] lg:h-[797px] w-full overflow-hidden flex items-end justify-center">
       <video
         className="absolute inset-0 size-full object-cover"
         src={heroVideo}
@@ -17,13 +17,19 @@ export default function Hero() {
         playsInline
       />
 
+      {/* Scrim for text contrast. Essential on phones, where the tall crop can
+          put bright sky/water directly behind the white headline. */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/55 via-black/25 to-transparent pointer-events-none" />
+
       <motion.div
-        className="relative z-10 flex flex-col items-center gap-8 pb-10"
+        className="container-x relative z-10 flex flex-col items-center gap-6 lg:gap-8 pb-10"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <h1 className="font-title font-bold text-5xl leading-[51px] text-white text-center whitespace-nowrap">
+        {/* No whitespace-nowrap: at 48px this string is ~595px and would push
+            the page sideways on phones. It wraps below lg instead. */}
+        <h1 className="font-title font-bold text-[32px] leading-[38px] sm:text-[40px] sm:leading-[46px] lg:text-5xl lg:leading-[51px] text-white text-center text-balance">
           Where Every Love Story Begins
         </h1>
 

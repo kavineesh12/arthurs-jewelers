@@ -15,6 +15,32 @@
   --color-border-cream: #efe6da;
 }
 
+/* Shared horizontal page rhythm: 20px on phones, 32px on tablets, and the
+   design's 80px from lg up. Used instead of repeating px-20 per section. */
+@utility container-x {
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 5rem;
+  }
+}
+
+/* Horizontal card rails on small screens (category tiles, review cards). */
+@utility snap-rail {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & > * {
+    scroll-snap-align: start;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -23,4 +49,6 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--color-core-05);
+  /* Belt-and-braces against a stray wide child causing sideways scroll. */
+  overflow-x: hidden;
 }

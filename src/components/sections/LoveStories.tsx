@@ -21,7 +21,7 @@ const stories = [
 type StoryImageProps = {
   image: string;
   alt: string;
-  setRef: (el: HTMLDivElement | null) => void;
+  setRef?: (el: HTMLDivElement | null) => void;
 };
 
 function StoryImage({ image, alt, setRef }: StoryImageProps) {
@@ -36,9 +36,9 @@ function StoryImage({ image, alt, setRef }: StoryImageProps) {
     <div
       ref={(el) => {
         ref.current = el;
-        setRef(el);
+        setRef?.(el);
       }}
-      className="w-full aspect-[839/1085] max-h-[1085px] overflow-hidden bg-white ml-auto max-w-[839px]"
+      className="w-full aspect-[4/5] lg:aspect-[839/1085] lg:max-h-[1085px] overflow-hidden bg-white lg:ml-auto lg:max-w-[839px]"
     >
       <motion.img src={image} alt={alt} style={{ scale }} className="size-full object-cover" />
     </div>
@@ -68,18 +68,18 @@ export default function LoveStories() {
   const active = stories[activeIndex];
 
   return (
-    <section className="relative w-full bg-core-02 pt-[120px]">
+    <section className="relative w-full bg-core-02 pt-16 lg:pt-[120px]">
       <img
         src={ellipse10}
         alt=""
-        className="absolute -left-[152px] top-[280px] size-[347px] pointer-events-none select-none"
+        className="hidden lg:block absolute -left-[152px] top-[280px] size-[347px] pointer-events-none select-none"
       />
 
-      <Reveal className="relative flex flex-col gap-6 items-center text-center max-w-[600px] mx-auto px-6">
-        <p className="font-body text-base text-core-05 tracking-[3.2px]">
+      <Reveal className="container-x relative flex flex-col gap-5 lg:gap-6 items-center text-center max-w-[600px] mx-auto">
+        <p className="font-body text-sm lg:text-base text-core-05 tracking-[2.4px] lg:tracking-[3.2px]">
           ARTHUR’S LOVE STORIES
         </p>
-        <h2 className="font-title font-bold text-5xl text-core-05">
+        <h2 className="font-title font-bold text-[32px] sm:text-[40px] lg:text-5xl text-core-05 text-balance">
           Every Ring Has a Love Story
         </h2>
         <p className="font-body text-base text-core-06">
@@ -91,7 +91,23 @@ export default function LoveStories() {
         <TextLink color="navy">READ ALL</TextLink>
       </Reveal>
 
-      <div className="relative flex gap-12 mt-20 pl-20">
+      {/* Mobile/tablet: each story keeps its own caption beneath its photo. A
+          pinned side column has nowhere to live at this width. */}
+      <div className="lg:hidden mt-12 flex flex-col gap-12">
+        {stories.map((story) => (
+          <div key={story.names} className="flex flex-col gap-5">
+            <StoryImage image={story.image} alt={story.names} />
+            <div className="container-x flex flex-col gap-4">
+              <h3 className="font-title text-[28px] sm:text-[34px] text-core-05">{story.names}</h3>
+              <p className="font-body text-base text-core-06">{quote}</p>
+              <TextLink color="navy">READ THEIR STORY</TextLink>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: sticky caption that crossfades as each photo passes centre. */}
+      <div className="hidden lg:flex relative gap-12 mt-20 pl-20">
         {/* pb keeps the sticky text from riding flush into the section's bottom edge */}
         <div className="w-[370px] shrink-0 relative pb-[120px]">
           <div className="sticky top-32 h-fit overflow-hidden">

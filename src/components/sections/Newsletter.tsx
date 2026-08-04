@@ -7,7 +7,7 @@ export default function Newsletter() {
   const [email, setEmail] = useState("");
 
   return (
-    <section className="relative h-[444px] w-full overflow-hidden">
+    <section className="relative h-[420px] sm:h-[440px] lg:h-[444px] w-full overflow-hidden">
       {/* Keeps Figma's exact crop; that crop is already oversized, so there is
           plenty of slack for the drift. */}
       <ParallaxImage
@@ -15,10 +15,14 @@ export default function Newsletter() {
         distance={50}
         imgClassName="absolute h-[234.5%] left-[-2.78%] max-w-none top-[-11.73%] w-[128.47%]"
       />
-      <Reveal className="absolute left-20 top-[127px] w-[559px] max-w-[calc(100%-80px)] flex flex-col gap-6 items-start p-6">
+      {/* Centred block on phones (the hand fills the right of the photo), left
+          aligned from lg as designed. */}
+      <Reveal className="absolute inset-x-0 lg:inset-x-auto lg:left-20 top-1/2 -translate-y-1/2 lg:top-[127px] lg:translate-y-0 container-x lg:px-0 lg:w-[559px] flex flex-col gap-6 items-start lg:p-6">
         <div className="flex flex-col gap-3 items-start text-white">
-          <p className="font-body text-base tracking-[3.2px]">STAY CONNECTED</p>
-          <p className="font-title font-bold text-[32px] leading-10 max-w-[392px]">
+          <p className="font-body text-xs sm:text-sm lg:text-base tracking-[2.4px] lg:tracking-[3.2px]">
+            STAY CONNECTED
+          </p>
+          <p className="font-title font-bold text-2xl sm:text-[28px] lg:text-[32px] leading-tight lg:leading-10 max-w-[392px]">
             First access to new collections, trunk shows &amp; private events.
           </p>
         </div>

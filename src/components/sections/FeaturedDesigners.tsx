@@ -110,15 +110,20 @@ export default function FeaturedDesigners() {
   const headerRef = useRef<HTMLDivElement>(null);
   const [stageScale, setStageScale] = useState(1);
 
-  // Shrink the card stage just enough that padding + heading + full card
-  // always fit inside the viewport while the section is pinned, so the
-  // designer name at the bottom of the card is never cut off.
+  // Shrink the card stage so padding + heading + a full card always fit the
+  // viewport while pinned — constrained by BOTH axes, since 605px is wider
+  // than a phone and taller than a short laptop.
   useEffect(() => {
     const measure = () => {
       const headingH = headerRef.current?.offsetHeight ?? 150;
       const gap = 48; // gap-12 between heading and stage
-      const available = window.innerHeight - 2 * 120 - headingH - gap;
-      setStageScale(Math.min(1, Math.max(available / ITEM_HEIGHT, 0.5)));
+      const vPad = window.innerWidth >= 1024 ? 120 : 64; // matches py below
+      const hPad = window.innerWidth >= 1024 ? 80 : window.innerWidth >= 640 ? 32 : 20;
+
+      const byHeight = (window.innerHeight - 2 * vPad - headingH - gap) / ITEM_HEIGHT;
+      const byWidth = (window.innerWidth - 2 * hPad) / ITEM_WIDTH;
+
+      setStageScale(Math.min(1, Math.max(Math.min(byHeight, byWidth), 0.4)));
     };
     measure();
     window.addEventListener("resize", measure);
@@ -140,11 +145,15 @@ export default function FeaturedDesigners() {
 
   return (
     <section ref={containerRef} className="relative w-full bg-white" style={{ height: "300vh" }}>
-      <div className="sticky top-0 w-full flex flex-col items-center gap-12 overflow-hidden py-[120px]">
-        <Reveal className="flex flex-col gap-4 items-center text-center text-core-05 px-20">
+      <div className="sticky top-0 w-full flex flex-col items-center gap-12 overflow-hidden py-16 lg:py-[120px]">
+        <Reveal className="container-x flex flex-col gap-4 items-center text-center text-core-05">
           <div ref={headerRef} className="flex flex-col gap-4 items-center">
-            <p className="font-body text-base tracking-[3.2px]">SIGNATURE COLLECTIONS</p>
-            <h2 className="font-title font-bold text-5xl">Featured Designers</h2>
+            <p className="font-body text-sm lg:text-base tracking-[2.4px] lg:tracking-[3.2px]">
+              SIGNATURE COLLECTIONS
+            </p>
+            <h2 className="font-title font-bold text-[32px] sm:text-[40px] lg:text-5xl">
+              Featured Designers
+            </h2>
           </div>
         </Reveal>
 

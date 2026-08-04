@@ -16,20 +16,22 @@ const hours = [
 export default function Showroom() {
   return (
     <section
-      className="w-full flex flex-col items-start pt-[120px] pb-20 px-20"
+      className="container-x w-full flex flex-col items-start pt-16 lg:pt-[120px] pb-16 lg:pb-20"
       style={{
         backgroundImage:
           "linear-gradient(176.89deg, rgb(247, 244, 242) 72.883%, rgb(255, 255, 255) 97.069%)",
       }}
     >
-      <div className="bg-white w-full flex gap-[86px] items-center overflow-hidden pl-8">
-        <Reveal className="flex flex-col gap-[30px] h-full items-start py-20 w-[510px] shrink-0">
+      {/* Image drops below the details on phones (column-reverse would hide the
+          copy behind a tall photo). */}
+      <div className="bg-white w-full flex flex-col lg:flex-row gap-10 lg:gap-[86px] items-stretch lg:items-center overflow-hidden px-5 sm:px-6 lg:pl-8 lg:pr-0">
+        <Reveal className="flex flex-col gap-[30px] h-full items-start pt-10 lg:py-20 w-full lg:w-[510px] shrink-0">
           <div className="flex flex-col gap-8 items-start w-full">
             <div className="flex flex-col gap-3 items-start w-full">
-              <p className="font-body text-base text-core-06 tracking-[3.2px]">
+              <p className="font-body text-sm lg:text-base text-core-06 tracking-[2.4px] lg:tracking-[3.2px]">
                 VISIT OUR SHOWROOM
               </p>
-              <h2 className="font-title font-bold text-[32px] leading-10 text-core-05 max-w-[302px]">
+              <h2 className="font-title font-bold text-2xl sm:text-[28px] lg:text-[32px] leading-tight lg:leading-10 text-core-05 max-w-[302px]">
                 Experience the Difference In Person
               </h2>
               <p className="font-body text-sm text-core-06">
@@ -42,8 +44,8 @@ export default function Showroom() {
             </div>
 
             <div className="flex flex-col gap-6 items-start w-full">
-              <div className="flex items-center justify-between w-full">
-                <div className="flex gap-[18px] items-center w-[300px]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
+                <div className="flex gap-[18px] items-center w-full sm:w-[300px]">
                   <img src={locationIcon} alt="" className="size-6 shrink-0" />
                   <p className="font-body text-base text-core-06">
                     1717 Lexington Ave N, Roseville, MN 55113
@@ -82,10 +84,10 @@ export default function Showroom() {
             </div>
           </div>
 
-          <div className="flex gap-2.5 items-start w-full">
+          <div className="flex gap-2.5 items-start w-full pb-2 lg:pb-0">
             <div className="size-2 bg-black/30 mt-2.5 shrink-0" />
             <div className="flex flex-col gap-1 items-start text-core-06">
-              <p className="font-title text-[27px] leading-8">Walk-ins Welcome</p>
+              <p className="font-title text-2xl lg:text-[27px] leading-8">Walk-ins Welcome</p>
               <p className="font-body text-base">
                 Appointments recommended for the best experience.
               </p>
@@ -93,8 +95,14 @@ export default function Showroom() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.15} className="flex-1 min-w-0 self-stretch">
-          <img src={showroomImg} alt="Showroom" className="size-full object-cover" />
+        {/* Fixed aspect on phones so the photo can't collapse to zero height
+            once it's no longer a stretched flex sibling. */}
+        <Reveal delay={0.15} className="lg:flex-1 min-w-0 w-full self-stretch -mx-5 sm:-mx-6 lg:mx-0">
+          <img
+            src={showroomImg}
+            alt="Showroom"
+            className="w-full h-[320px] sm:h-[420px] lg:h-full object-cover"
+          />
         </Reveal>
       </div>
     </section>
