@@ -1,5 +1,6 @@
 import { useState } from "react";
 import bgImage from "../../assets/imgImage75.jpg";
+import ParallaxImage from "../ParallaxImage";
 import Reveal from "../Reveal";
 
 export default function Newsletter() {
@@ -7,13 +8,13 @@ export default function Newsletter() {
 
   return (
     <section className="relative h-[444px] w-full overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img
-          src={bgImage}
-          alt=""
-          className="absolute h-[234.5%] left-[-2.78%] max-w-none top-[-11.73%] w-[128.47%]"
-        />
-      </div>
+      {/* Keeps Figma's exact crop; that crop is already oversized, so there is
+          plenty of slack for the drift. */}
+      <ParallaxImage
+        src={bgImage}
+        distance={50}
+        imgClassName="absolute h-[234.5%] left-[-2.78%] max-w-none top-[-11.73%] w-[128.47%]"
+      />
       <Reveal className="absolute left-20 top-[127px] w-[559px] max-w-[calc(100%-80px)] flex flex-col gap-6 items-start p-6">
         <div className="flex flex-col gap-3 items-start text-white">
           <p className="font-body text-base tracking-[3.2px]">STAY CONNECTED</p>

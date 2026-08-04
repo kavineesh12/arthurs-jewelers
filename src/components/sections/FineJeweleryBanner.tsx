@@ -1,20 +1,13 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import skyHands from "../../assets/imgImage69.jpg";
 import handsCutout from "../../assets/imgImage70.png";
+import ParallaxImage from "../ParallaxImage";
 import TextLink from "../TextLink";
 
 export default function FineJeweleryBanner() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [-20, 20]);
-
   return (
-    <section ref={ref} className="relative h-[810px] w-full overflow-hidden">
-      <img src={skyHands} alt="" className="absolute inset-0 size-full object-cover" />
+    <section className="relative h-[810px] w-full overflow-hidden">
+      {/* Sky sits furthest back, so it drifts least. */}
+      <ParallaxImage src={skyHands} distance={28} />
 
       <div className="absolute left-20 top-[58px] w-[1286px] max-w-[calc(100%-160px)] flex items-end p-8 overflow-hidden backdrop-blur-[28px] bg-[rgba(84,134,182,0.6)]">
         <div className="flex-1 flex gap-12 items-end">
@@ -29,15 +22,10 @@ export default function FineJeweleryBanner() {
         </div>
       </div>
 
-      {/* Hands cutout renders ABOVE the frosted panel (Figma layer order), so the
-          hands appear to pop out over the banner. pointer-events-none keeps the
-          panel's link clickable through the transparent areas. */}
-      <motion.img
-        src={handsCutout}
-        alt=""
-        style={{ y }}
-        className="absolute inset-0 size-full object-cover pointer-events-none"
-      />
+      {/* Hands cutout renders ABOVE the frosted panel (Figma layer order) and is
+          the nearest layer, so it drifts most — the hands appear to rise past
+          the banner as you scroll. */}
+      <ParallaxImage src={handsCutout} distance={70} />
     </section>
   );
 }
