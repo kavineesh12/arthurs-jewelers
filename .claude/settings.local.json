@@ -52,7 +52,15 @@
       "Read(//Users/avineesh/**)",
       "Bash(timeout 8 ssh -o StrictHostKeyChecking=no -o BatchMode=yes -T git@github.com)",
       "Bash(curl -s -o /dev/null -w \"dev server HTTP %{http_code}\\\\n\" http://localhost:5173/)",
-      "Bash(curl -s http://localhost:5173/)"
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(curl -sL -o /dev/null -w 'HTTP %{http_code}  size=%{size_download}\\\\n' https://kavineesh12.github.io/Arthur/)",
+      "Bash(curl -sL https://kavineesh12.github.io/Arthur/)",
+      "Bash(curl -s https://api.github.com/repos/kavineesh12/Arthur)",
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/Arthur/actions/runs?per_page=5\")",
+      "Bash(curl -s https://api.github.com/users/kavineesh12)",
+      "Bash(curl -s \"https://api.github.com/users/kavineesh12/repos?per_page=100\")",
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/commits?per_page=3\")",
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/contents/.github/workflows\")"
     ]
   }
 }
