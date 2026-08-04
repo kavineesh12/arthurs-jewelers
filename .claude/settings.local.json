@@ -60,7 +60,20 @@
       "Bash(curl -s https://api.github.com/users/kavineesh12)",
       "Bash(curl -s \"https://api.github.com/users/kavineesh12/repos?per_page=100\")",
       "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/commits?per_page=3\")",
-      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/contents/.github/workflows\")"
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/contents/.github/workflows\")",
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/Arthur/actions/runs?per_page=3\")",
+      "Bash(curl -s \"https://api.github.com/users/kavineesh12/repos?per_page=100&type=public\")",
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/actions/runs?per_page=3\")",
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/pages\")",
+      "Bash(curl -sL -o /dev/null -w \" HTTP %{http_code} size=%{size_download}\\\\n\" \"https://kavineesh12.github.io/arthurs-jewelers/\")",
+      "Bash(curl -s https://api.github.com/repos/kavineesh12/arthurs-jewelers)",
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/branches\")",
+      "Bash(curl -s \"https://api.github.com/repos/kavineesh12/arthurs-jewelers/contents/\")",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(curl -sL -o /tmp/live.html -w 'HTTP %{http_code}  size=%{size_download}\\\\n' https://kavineesh12.github.io/arthurs-jewelers/)",
+      "Read(//tmp/**)",
+      "Bash(grep -oE '\"[^\"]{0,30}assets/[A-Za-z0-9._-]+\\\\.\\(mp4|jpg|png|svg\\)\"' /tmp/live.js)"
     ]
   }
 }
