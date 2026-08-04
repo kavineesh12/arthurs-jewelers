@@ -46,7 +46,13 @@
       "Read(//var/folders/nr/1zwwn2w13wg8gf5vt4rlrrb00000gn/T/TemporaryItems/NSIRD_screencaptureui_i15tZJ/**)",
       "Read(//var/folders/nr/1zwwn2w13wg8gf5vt4rlrrb00000gn/T/TemporaryItems//**)",
       "Bash(mdls -name kMDItemDurationSeconds -name kMDItemPixelHeight -name kMDItemPixelWidth \"/Users/avineesh/Downloads/Screen Recording 2026-08-04 at 4.21.02 PM.mov\")",
-      "Bash(xcrun swift *)"
+      "Bash(xcrun swift *)",
+      "Bash(git config *)",
+      "Bash(echo \"git identity OK: $\\(git config user.name\\) <$\\(git config user.email\\)>\")",
+      "Read(//Users/avineesh/**)",
+      "Bash(timeout 8 ssh -o StrictHostKeyChecking=no -o BatchMode=yes -T git@github.com)",
+      "Bash(curl -s -o /dev/null -w \"dev server HTTP %{http_code}\\\\n\" http://localhost:5173/)",
+      "Bash(curl -s http://localhost:5173/)"
     ]
   }
 }
