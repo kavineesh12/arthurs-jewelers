@@ -16,14 +16,16 @@
 }
 
 /* Shared horizontal page rhythm: 20px on phones, 32px on tablets, and the
-   design's 80px from lg up. Used instead of repeating px-20 per section. */
+   design's 80px from lg up. Beyond 1440px viewport, padding grows to keep
+   content capped at 1280px (design's 1440 minus 2x 80) — so backgrounds still
+   go edge-to-edge but content doesn't drift apart on ultra-wide monitors. */
 @utility container-x {
   padding-inline: 1.25rem;
   @media (width >= 40rem) {
     padding-inline: 2rem;
   }
   @media (width >= 64rem) {
-    padding-inline: 5rem;
+    padding-inline: max(5rem, calc((100vw - 80rem) / 2));
   }
 }
 
